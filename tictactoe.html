@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 250px;
+            height: 250px;
+        }
+
+        .mybutton {
+            /* border: 0px solid black; */
+            width: 70px;
+            height: 50px;
+
+        }
+        .mybutton1 {
+            /* border: 0px solid black; */
+            width: 70px;
+            height: 50px;
+
+        }
+        .mybutton:hover{
+            border: 2px solid black;
+        }
+
+        #ref {
+            margin-top: 5px;
+            width: 218px;
+        }
+
+        #rw,
+        #scoredraw,
+        #bw,
+        #rb,
+        #rtb,
+        #bb {
+            margin-top: 5px;
+
+        }
+        #ref:hover{
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+        #rtb:hover{
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h2>TIC TAC TOE</h2>
+    </center>
+    <center>
+        <button class="mybutton" id="n0" type="button" value="b0"></button>
+        <button class="mybutton" id="n1" type="button" value="b1"></button>
+        <button class="mybutton" id="n2" type="button" value="b2"></button>
+        <br>
+        <button class="mybutton" id="n3" type="button" value="b3"></button>
+        <button class="mybutton" id="n4" type="button" value="b4"></button>
+        <button class="mybutton" id="n5" type="button" value="b5"></button>
+        <br>
+        <button class="mybutton" id="n6" type="button" value="b6"></button>
+        <button class="mybutton" id="n7" type="button" value="b7"></button>
+        <button class="mybutton" id="n8" type="button" value="b8"></button>
+        <br>
+        <button class="mybutton1" id="rb" type="button" value="Red">RED</button>
+        <button onclick="Reset()" id="rtb" class="mybutton1" type="button" value="Reset">RESET</button>
+        <button style="border: 2px solid blue;" class="mybutton1" id="bb" type="button" value="Blue">BLUE</button>
+        <br>
+        <button style="color: red;" class="mybutton1" id="rw" type="button" value="rwon">WON : 0</button>
+        <button class="mybutton1" id="draw" type="button" value="scoredraw">N/R : 0</button>
+        <button style="color: blue;" class="mybutton1" id="bw" type="button" value="bwon">WON : 0</button>
+        <BR>
+        <button class="mybutton1" id="ref" type="button" value="refresh">REFRESH</button>
+
+    </center>
+
+    <script>
+
+        myArr = new Array(9)
+        let win = 2
+        let bwin = 0
+        let rwin = 0
+        let drawMatch = 0
+        for (var b = 0; b < 9; b++) {
+            myArr[b] = 2
+        }
+
+
+
+
+        let turn = "blue"
+
+        const btn = document.getElementById(`n0`);
+        const rbtn = document.getElementById('rb')
+        const bbtn = document.getElementById(`bb`)
+        const rsbtn = document.getElementById(`Reset`)
+
+
+
+        btn.addEventListener('click', function onClick() {
+            if (btn.style.backgroundColor != `red` && btn.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn.style.backgroundColor = 'blue';
+                    btn.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[0] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn.style.backgroundColor = 'red';
+                    btn.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[0] = 1
+                    turn = "blue"
+                    winLost()
+
+                }
+            }
+
+        });
+
+
+        const btn1 = document.getElementById("n1")
+        btn1.addEventListener('click', function onClick() {
+            if (btn1.style.backgroundColor != `red` && btn1.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn1.style.backgroundColor = 'blue';
+                    btn1.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[1] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn1.style.backgroundColor = 'red';
+                    btn1.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    turn = "blue"
+                    myArr[1] = 1
+                    winLost()
+                }
+            }
+        });
+
+        const btn2 = document.getElementById("n2")
+        btn2.addEventListener('click', function onClick() {
+            if (btn2.style.backgroundColor != `red` && btn2.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn2.style.backgroundColor = 'blue';
+                    btn2.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[2] = 0
+                    turn = "red"
+                    winLost()
+                }
+                else {
+                    btn2.style.backgroundColor = 'red';
+                    btn2.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[2] = 1
+                    turn = "blue"
+                    winLost()
+
+
+                }
+            }
+        });
+
+        const btn3 = document.getElementById("n3")
+        btn3.addEventListener('click', function onClick() {
+            if (btn3.style.backgroundColor != `red` && btn3.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn3.style.backgroundColor = 'blue';
+                    btn3.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[3] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn3.style.backgroundColor = 'red';
+                    btn3.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[3] = 1
+                    turn = "blue"
+                    winLost()
+
+
+                }
+            }
+        });
+
+        const btn4 = document.getElementById("n4")
+        btn4.addEventListener('click', function onClick() {
+            if (btn4.style.backgroundColor != `red` && btn4.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn4.style.backgroundColor = 'blue';
+                    btn4.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[4] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn4.style.backgroundColor = 'red';
+                    btn4.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[4] = 1
+                    turn = "blue"
+                    winLost()
+
+                }
+            }
+        });
+
+        const btn5 = document.getElementById("n5")
+        btn5.addEventListener('click', function onClick() {
+            if (btn5.style.backgroundColor != `red` && btn5.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn5.style.backgroundColor = 'blue';
+                    btn5.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[5] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn5.style.backgroundColor = 'red';
+                    btn5.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[5] = 1
+                    turn = "blue"
+                    winLost()
+
+                }
+            }
+        });
+
+        const btn6 = document.getElementById("n6")
+        btn6.addEventListener('click', function onClick() {
+            if (btn6.style.backgroundColor != `red` && btn6.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn6.style.backgroundColor = 'blue';
+                    btn6.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    myArr[6] = 0
+                    turn = "red"
+                    winLost()
+
+                }
+                else {
+                    btn6.style.backgroundColor = 'red';
+                    btn6.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    myArr[6] = 1
+                    turn = "blue"
+                    winLost()
+
+
+                }
+            }
+        });
+
+        const btn7 = document.getElementById("n7")
+        btn7.addEventListener('click', function onClick() {
+            if (btn7.style.backgroundColor != `red` && btn7.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn7.style.backgroundColor = 'blue';
+                    btn7.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    turn = "red"
+                    myArr[7] = 0
+                    winLost()
+
+                }
+                else {
+                    btn7.style.backgroundColor = 'red';
+                    btn7.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    turn = "blue"
+                    myArr[7] = 1
+                    winLost()
+
+
+                }
+            }
+        });
+
+        const btn8 = document.getElementById("n8")
+        btn8.addEventListener('click', function onClick() {
+            if (btn8.style.backgroundColor != `red` && btn8.style.backgroundColor != `blue`) {
+                if (turn == "blue") {
+                    btn8.style.backgroundColor = 'blue';
+                    btn8.style.color = 'white';
+                    bbtn.style.border = `1px solid black`
+                    rbtn.style.border = `2px solid red`
+                    turn = "red"
+                    myArr[8] = 0
+                    winLost()
+
+                }
+                else {
+                    btn8.style.backgroundColor = 'red';
+                    btn8.style.color = 'white';
+                    rbtn.style.border = `1px solid black`
+                    bbtn.style.border = `2px solid blue`
+                    turn = "blue"
+                    myArr[8] = 1
+                    winLost()
+
+                }
+            }
+        });
+
+        const ref = document.getElementById(`ref`)
+        ref.addEventListener(`click`, function onClick() {
+            rwin = 0
+            bwin = 0
+            drawMatch = 0
+            Reset()
+            document.getElementById(`rw`).innerHTML = `WON : ` + rwin
+            document.getElementById(`bw`).innerHTML = `WON : ` + bwin
+            document.getElementById(`draw`).innerHTML = `N/R : ` + drawMatch
+        })
+
+        function Reset() {
+
+            for (var b = 0; b < 9; b++) {
+                myArr[b] = 2
+            }
+            win = 2
+            turn = `blue`
+            bbtn.style.border = `2px solid blue`
+            rbtn.style.border = `1px solid black`
+            btn.style.backgroundColor = `white`
+            btn.style.border = `1px solid black`
+            btn1.style.backgroundColor = `white`
+            btn1.style.border = `1px solid black`
+            btn2.style.backgroundColor = `white`
+            btn2.style.border = `1px solid black`
+            btn3.style.backgroundColor = `white`
+            btn3.style.border = `1px solid black`
+            btn4.style.backgroundColor = `white`
+            btn4.style.border = `1px solid black`
+            btn5.style.backgroundColor = `white`
+            btn5.style.border = `1px solid black`
+            btn6.style.backgroundColor = `white`
+            btn6.style.border = `1px solid black`
+            btn7.style.backgroundColor = `white`
+            btn7.style.border = `1px solid black`
+            btn8.style.backgroundColor = `white`
+            btn8.style.border = `1px solid black`
+
+        }
+
+        function winLost() {
+            if ((myArr[0] == 0 && myArr[1] == 0 && myArr[2] == 0) || (myArr[3] == 0 && myArr[4] == 0 && myArr[5] == 0) || (myArr[6] == 0 && myArr[7] == 0 && myArr[8] == 0) || (myArr[0] == 0 && myArr[3] == 0 && myArr[6] == 0) || (myArr[1] == 0 && myArr[4] == 0 && myArr[7] == 0) || (myArr[2] == 0 && myArr[5] == 0 && myArr[8] == 0) || (myArr[0] == 0 && myArr[4] == 0 && myArr[8] == 0) || (myArr[2] == 0 && myArr[4] == 0 && myArr[6] == 0)) {
+                win = 0
+                bwin++
+            }
+
+            if ((myArr[0] == 1 && myArr[1] == 1 && myArr[2] == 1) || (myArr[3] == 1 && myArr[4] == 1 && myArr[5] == 1) || (myArr[6] == 1 && myArr[7] == 1 && myArr[8] == 1) || (myArr[0] == 1 && myArr[3] == 1 && myArr[6] == 1) || (myArr[1] == 1 && myArr[4] == 1 && myArr[7] == 1) || (myArr[2] == 1 && myArr[5] == 1 && myArr[8] == 1) || (myArr[0] == 1 && myArr[4] == 1 && myArr[8] == 1) || (myArr[2] == 1 && myArr[4] == 1 && myArr[6] == 1)) {
+                win = 1
+                rwin++
+            }
+            if (win == 1) {
+                window.alert(`RED won`)
+                Reset()
+            }
+            else if (win == 0) {
+                window.alert(`BLUE won`)
+                Reset()
+            }
+            else {
+                var d = false
+                for (var g = 0; g < 9; g++) {
+                    if (myArr[g] == 2) {
+                        d = true
+                    }
+                }
+                if (d == false) {
+                    drawMatch++
+                    window.alert(`Match Draw`)
+                }
+            }
+
+            document.getElementById(`rw`).innerHTML = `WON : ` + rwin
+            document.getElementById(`bw`).innerHTML = `WON : ` + bwin
+            document.getElementById(`draw`).innerHTML = `N/R : ` + drawMatch
+
+
+
+
+        }
+
+    </script>
+</body>
+
+</html>
